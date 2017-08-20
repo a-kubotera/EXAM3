@@ -1,0 +1,106 @@
+<script>
+
+$(document).on('change', ':file', function() {
+    var input = $(this),
+    numFiles = input.get(0).files ? input.get(0).files.length : 1,
+    label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+    input.parent().parent().next(':text').val(label);
+    var filename = document.getElementById("filename");
+    if(filename)
+    {
+      $('#defAvater').hide();
+    }
+});
+$(function(){
+  //画像ファイルプレビュー表示のイベント追加 fileを選択時に発火するイベントを登録
+  $('form').on('change', 'input[type="file"]', function(e) {
+    var file = e.target.files[0],
+        reader = new FileReader(),
+        $preview = $(".preview");
+        t = this;
+    // 画像ファイル以外の場合は何もしない
+    if(file.type.indexOf("image") < 0){
+      return false;
+    }
+
+    // ファイル読み込みが完了した際のイベント登録
+    reader.onload = (function(file) {
+      return function(e) {
+        //既存のプレビューを削除
+        $preview.empty();
+        // .prevewの領域の中にロードした画像を表示するimageタグを追加
+        $preview.append($('<img>').attr({
+                  src: e.target.result,
+                  class: "users_avaterL",
+                  title: file.name
+              }));
+      };
+    })(file);
+    reader.readAsDataURL(file);
+  });
+});
+</script>
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<div class="col-md-6 userDataInput__image">
+  <p id="defAvater">
+    <%= profile_img(@user) if profile_img(@user) %>
+  </p>
+  <p class="preview"></p>
+  <div class="input-group">
+      <label class="input-group-btn">
+          <span class="btn btn-primary glyphicon glyphicon-camera setting" aria-hidden="true">
+            <%= f.file_field :avatar, class: "fileInput",style: "display:none;"%>
+          </span>
+      </label>
+      <input type="text" class="form-control" readonly="" id="filename">
+  </div>
+  <%= f.hidden_field :avatar_cache %>
+</div>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <% if @user.provider.blank? %>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+      <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :現在のパスワード %><i>(we need your current password to confirm your changes)</i><br />
+      <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= profile_img(@user) if profile_img(@user) %>
+    <%= f.file_field :avatar %>
+    <%= f.hidden_field :avatar_cache %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "更新", class: "btn btn-primary btn-block" %>
+  </div>
+<% end %>
+
+<h3>Cancel my account</h3>
+
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+<%= link_to "Back", :back %>

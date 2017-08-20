@@ -1,0 +1,26 @@
+<div class="row topPage" style="padding:20px;">
+  <div class="msgBox">
+    <p class="navArea navArea__itemText">
+      Facebookクローン作成中　(・・;)
+    </p>
+    <div class="
+      col-xs-offset-1 col-xs-10
+      col-md-offset-4 col-md-8
+      ">
+    <p class="content">
+  
+    </p>
+
+    <p class="buttom">
+      <% if user_signed_in? %>
+      <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+      <%= link_to 'マイページ', edit_user_registration_path %>
+
+      <% else %>
+      <%= link_to 'ログイン', new_user_session_path  %>
+      <%= link_to 'サインアップ', new_user_registration_path %>
+      <% end %>
+    </p>
+    </div>
+  </div>
+</div>

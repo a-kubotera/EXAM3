@@ -1,0 +1,45 @@
+<div class="container">
+  <h2>フォロー詳細</h2>
+  <div class="row">
+    <div class="col-xs-4 show_user">
+      <h3>マイデータ</h3>
+      <div class="showUser__avatar--large">
+        <%= profile_img(@user)%>
+      </div>
+      <div class="showUser__name">
+        <%= @user.name %>
+      </div>
+      <div class="showUser__email">
+        <%= @user.email %>
+      </div>
+    </div>
+    <div class="col-xs-4 showFollow showFollow--follow">
+      <h3>フォロー一覧</h3>
+      <% @follow.each do |f| %>
+        <div class ="row">
+          <div class="col-xs-4 showFollow__avatar">
+            <%= profile_img(f)%>
+          </div>
+          <div class="col-xs-8 showFollow__name">
+            <%= f.name %><br>
+            <%= f.email %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-xs-4 showFollow showFollow--follower">
+      <h3>フォロワー一覧</h3>
+      <% @followed.each do |f| %>
+        <div class ="row">
+          <div class="col-xs-4 showFollow__avatar">
+            <%= profile_img(f)%>
+          </div>
+          <div class="col-xs-8 showFollow__name">
+            <%= f.name %><br>
+            <%= f.email %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

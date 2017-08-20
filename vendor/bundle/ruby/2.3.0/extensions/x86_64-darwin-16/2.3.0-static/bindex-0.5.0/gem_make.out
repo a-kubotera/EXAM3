@@ -1,0 +1,15 @@
+current directory: /Users/akira/workspace/EXAM3/vendor/bundle/ruby/2.3.0/gems/bindex-0.5.0/ext/bindex
+/Users/akira/.rbenv/versions/2.3.0/bin/ruby -r ./siteconf20170815-38002-1ygi9f5.rb extconf.rb
+creating Makefile
+
+current directory: /Users/akira/workspace/EXAM3/vendor/bundle/ruby/2.3.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR=" clean
+
+current directory: /Users/akira/workspace/EXAM3/vendor/bundle/ruby/2.3.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR="
+compiling cruby.c
+linking shared-object bindex/cruby.bundle
+
+current directory: /Users/akira/workspace/EXAM3/vendor/bundle/ruby/2.3.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 cruby.bundle ./.gem.20170815-38002-9ubc9a/bindex

@@ -1,0 +1,117 @@
+//twitter bootstrap アイコン用フォント
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url("glyphicons-halflings-regular.eot");
+  src: url("glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"),
+       url("glyphicons-halflings-regular.woff2") format("woff2"),
+       url("glyphicons-halflings-regular.woff") format("woff"),
+       url("glyphicons-halflings-regular.ttf") format("truetype"),
+       url("glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg");
+}
+//pcのみの設定
+@mixin mq-pc {
+    @media screen and (min-width: 980px) {
+        @content;
+    }
+}
+//タブレットのみの設定
+@mixin mq-tablet {
+    @media screen and (min-width: 768px) and (max-width: 979px)  {
+        @content;
+    }
+}
+//スマホのみの設定
+@mixin mq-phone {
+    @media screen and (max-width: 767px){
+        @content;
+    }
+}
+//余った文を・・・表示
+@mixin ellipsis{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+//共通Nav部分のdesign
+.navArea{
+    &__list{
+    }
+    &__itemIcon {
+      &--sub{}
+    }
+    &__itemTwIcon{
+      display: inline-block;
+      margin-top:5px;
+      font-size:26px;
+      height: 36px;
+    }
+    &__itemText{
+      display: inline-block;
+      vertical-align:bottom;
+      &--md24{
+        height: 26px;
+      }
+      &--md36{
+        height: 32px;
+      }
+    }
+    &__itemTwText{
+      display: inline-block;
+      vertical-align:bottom;
+      padding-left: 10px;
+    }
+    &__itemDrop{
+      vertical-align:top;
+      display: inline-block;
+      font-weight:bolder;
+      font-size:16px;
+      margin-top:8px;
+    }
+}
+//デバイスのユーザー登録関連フォームdesign
+.userDataInput{
+  &__new{
+  }
+  &__items{
+    padding:10px;
+  }
+  &__title{
+    padding:5px;
+  }
+  &__error{
+    margin: 5px;
+    padding:8px;
+    border-radius: 10px;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+  }
+  &__button{
+    text-align: center;;
+  }
+  &__links{
+        padding:8px;
+  }
+  &__image{
+
+    >p>img{
+      @include mq-phone{
+      widht:100px;
+      height: 100px;
+      }
+      @include mq-pc{
+      widht:100px;
+      height: 100px;
+      }
+    }
+  }
+}
+
+
+//オーバーライド
+.navbar .navbar-nav > li > a{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

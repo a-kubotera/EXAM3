@@ -1,0 +1,13 @@
+current directory: /Users/akira/workspace/EXAM3/vendor/bundle/ruby/2.3.0/gems/json-1.8.6/ext/json
+/Users/akira/.rbenv/versions/2.3.0/bin/ruby -r ./siteconf20170815-38002-pvf5x1.rb extconf.rb
+creating Makefile
+
+current directory: /Users/akira/workspace/EXAM3/vendor/bundle/ruby/2.3.0/gems/json-1.8.6/ext/json
+make "DESTDIR=" clean
+
+current directory: /Users/akira/workspace/EXAM3/vendor/bundle/ruby/2.3.0/gems/json-1.8.6/ext/json
+make "DESTDIR="
+make: Nothing to be done for `all'.
+
+current directory: /Users/akira/workspace/EXAM3/vendor/bundle/ruby/2.3.0/gems/json-1.8.6/ext/json
+make "DESTDIR=" install
