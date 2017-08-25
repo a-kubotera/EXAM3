@@ -1,0 +1,8 @@
+<label><%= user.length %>　<%= title %></label>
+<p>
+  <% user.each do |f| %>
+  <%= link_to f do %>
+  <%= profile_img(f,"avatarSize--myPageFollow") if profile_img(f) %>
+  <% end %>
+  <% end %>
+</p>

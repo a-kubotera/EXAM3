@@ -13,7 +13,6 @@ class User < ApplicationRecord
 
   #新規項目のバリデート
   validates :name, presence: true, length: { maximum: 50 }
-  validates :age, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.find_by(provider: auth.provider, uid: auth.uid)

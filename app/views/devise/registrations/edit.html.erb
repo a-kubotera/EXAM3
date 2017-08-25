@@ -31,7 +31,7 @@ $(function(){
         // .prevewの領域の中にロードした画像を表示するimageタグを追加
         $preview.append($('<img>').attr({
                   src: e.target.result,
-                  class: "users_avaterL",
+                  class: "avatarSize--myPage",
                   title: file.name
               }));
       };
@@ -40,67 +40,94 @@ $(function(){
   });
 });
 </script>
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-<div class="col-md-6 userDataInput__image">
-  <p id="defAvater">
-    <%= profile_img(@user) if profile_img(@user) %>
-  </p>
-  <p class="preview"></p>
-  <div class="input-group">
-      <label class="input-group-btn">
-          <span class="btn btn-primary glyphicon glyphicon-camera setting" aria-hidden="true">
-            <%= f.file_field :avatar, class: "fileInput",style: "display:none;"%>
-          </span>
-      </label>
-      <input type="text" class="form-control" readonly="" id="filename">
+<div class="row">
+  <div class="col-xs-12 col-md-8 col-md-offset-2">
+    <div class="userDataInput">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <div class="card hoverable">
+        <h2 class="userDataInput__title">マイページ/登録情報の修正</h2>
+        <% if devise_error_messages!.present? %>
+          <section class="wow fadeInDownBig" data-wow-duration="1s" data-wow-iteration="1">
+            <div class="userDataInput__error text-danger"><%= devise_error_messages! %></div>
+          </section>
+        <% end %>
+        <div class="row userDataInput__items">
+          <div class="col-md-12 userDataInput__avatar">
+            <p id="defAvater"><%= profile_img(@user,"avatarSize--myPage") if profile_img(@user) %></p>
+            <p class="preview"></p>
+            <div class="input-group">
+              <label class="input-group-btn">
+                <span class="btn btn-primary glyphicon glyphicon-camera setting" aria-hidden="true">
+                  <%= f.file_field :avatar, class: "fileInput",style: "display:none;"%>
+                </span>
+              </label>
+              <input type="text" class="form-control" readonly="" id="filename" style="display:none;">
+            </div>
+            <%= f.hidden_field :avatar_cache %>
+          </div>
+          <div class="col-md-12 userDataInput__divider"></div>
+          <div class="col-md-6 input-field">
+            <i class="material-icons prefix">account_circle</i>
+            <%= f.text_field :name,id:"name"%>
+            <label for="">お名前</label>
+          </div>
+
+          <div class="col-md-6 input-field">
+            <i class="material-icons prefix">email</i>
+            <%= f.email_field :email,id:"email" %>
+            <label for="email" data-success="right">E-mail</label>
+          </div>
+          <div class="col-md-6 input-field">
+            <i class="material-icons prefix">cake</i>
+            <%= f.date_field :birthday, autofocus: true,id:"birthday"%>
+            <label for="birthday">誕生日</label>
+          </div>
+          <div class="col-md-6 input-field">
+            <i class="material-icons prefix">account_circle</i>
+            <%= f.number_field :age,autofocus: true,id:"age" %>
+            <label for="icon_prefix">年齢</label>
+          </div>
+          <div class="col-md-12 input-field">
+            <i class="material-icons prefix">person_pin</i>
+            <%= f.text_field :address, autofocus: true,id:"address" %>
+            <label for="address">住所</label>
+          </div>
+          <div class="col-md-12 input-field">
+            <i class="mdi-editor-mode-edit prefix"></i>
+            <%=  f.text_area :introduction, autofocus: true,id:"introduction",class:"materialize-textarea" %>
+            <label for="introduction">自己紹介</label>
+          </div>
+          <% if @user.provider.blank? %>
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <div class="alert alert-warning" role="alert">Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+            <% end %>
+            <div class="col-md-6 input-field">
+              <i class="material-icons prefix">vpn_key</i>
+              <%= f.password_field :password,autofocus: true, autocomplete: "off",id:"password" ,class:"validate"%>
+              <label for="password">新しいパスワード (<%= @minimum_password_length %>文字以上)</label>
+            </div>
+            <div class="col-md-6 input-field">
+              <i class="material-icons prefix">vpn_key</i>
+              <%= f.password_field :password_confirmation, autocomplete: "off",id:"password_confirmation" %>
+              <label for="password_confirmation">新しいパスワード再入力</label>
+            </div>
+            <div class="col-md-6 col-md-offset-3 input-field">
+              <i class="material-icons prefix">vpn_key</i>
+              <%= f.password_field :current_password, autocomplete: "off",id:"current_password" ,class:"validate" %>
+              <label for="current_password">現在のパスワードを入力しください。</label>
+            </div>
+          </div>
+        <% end %>
+        <div class="actions userDataInput__button">
+          <%= link_to "TOPへ戻る", root_path, class:"btn btn-default" %>
+          <%= f.submit "更新する",class:"btn btn-primary"%>
+        </div>
+      <% end %>
+      <div class="actions userDataInput__button" >
+        <h4>このアカウントを削除する場合はこのボタンをクリック<h4>
+      　<%= button_to "アカウントの削除", registration_path(resource_name), data: { confirm: "本当に削除してもよろしいですか？?" }, method: :delete, class:'btn btn-danger btn_size' %>
+    　</div>
+    </div>
   </div>
-  <%= f.hidden_field :avatar_cache %>
 </div>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <% if @user.provider.blank? %>
-
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-    <% end %>
-
-    <div class="field">
-      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-      <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-    </div>
-
-    <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
-    </div>
-
-    <div class="field">
-      <%= f.label :現在のパスワード %><i>(we need your current password to confirm your changes)</i><br />
-      <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= profile_img(@user) if profile_img(@user) %>
-    <%= f.file_field :avatar %>
-    <%= f.hidden_field :avatar_cache %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "更新", class: "btn btn-primary btn-block" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>

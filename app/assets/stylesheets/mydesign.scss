@@ -32,6 +32,16 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+//viewportを基準とした相対値でfont sizeを決める
+//(memo)第一引数で基準となる画面幅のフォントサイズ、第二引数で基準となる画面幅を入力する
+@function get_vw($size, $viewport:320){
+  $rate: 100 / $viewport;
+  @return $rate * $size * 1vw;
+}
+@mixin fz_vw($font_size:10){
+  font-size: $font_size * 1px;
+  font-size: get_vw($font_size);
+}
 
 //共通Nav部分のdesign
 .navArea{
@@ -69,7 +79,50 @@
       margin-top:8px;
     }
 }
-//デバイスのユーザー登録関連フォームdesign
+//ユーザー情報詳細用デザイン
+.userDataShow{
+  &__title{
+    @include fz_vw(10);
+    padding:5px;
+  }
+  &__avatar{
+    text-align: center;
+    margin-top:10px;
+    top:30px;
+    @include mq-phone{
+      top:0px;
+    }
+
+  }
+  &__items{
+    >label{
+      display: inline-block;
+      margin-left:26px;
+      height: 11px;
+    }
+    >p {
+      margin-top:-5px;
+      margin-bottom: 0px;
+      >span{
+        display: inline-block;
+        vertical-align: text-bottom;
+        margin-left:5px;
+      }
+      .togglebutton{
+        display:inline-block;
+        float:right
+      }
+    }
+  }
+  &__follow{
+    padding-top:10px;
+  }
+  &__follower{
+  }
+}
+
+
+//デバイスのユーザー情報修正フォームdesign
 .userDataInput{
   &__new{
   }
@@ -92,21 +145,66 @@
     text-align: center;;
   }
   &__links{
-        padding:8px;
+    padding:8px;
   }
-  &__image{
-
-    >p>img{
-      @include mq-phone{
-      widht:100px;
-      height: 100px;
+  &__links{
+    padding:8px;
+  }
+  &__avatar{
+    text-align:center;
+  }
+  &__divider{
+    height: 30px;
+  }
+}
+//ユーザー一覧画面設定
+.showUser {
+  padding:5px;
+  min-width:200px;
+    &--index {
+    }
+    &__avatar{
+      img{width: 150px;
+        @include mq-phone{
+          width: 100px;
+        }
       }
-      @include mq-pc{
-      widht:100px;
-      height: 100px;
+      &--large{
+        img{width: 300px;}
       }
     }
-  }
+    &__name{
+      font-size:1.5em;
+      margin:10px;
+    }
+    &__email{
+      @include ellipsis;
+    }
+    &__followButton{
+    }
+    &__message{}
+}
+.showFollow {
+  >.row{
+    padding-bottom: 5px;
+
+    }
+    &--folow {
+        background:red;
+    }
+    &--folower {
+        background:blue;
+    }
+    &__avatar{
+      img{width: 100px;}
+    }
+    &__name{
+      height: 50px;
+      text-align: left;
+      @include ellipsis;
+    }
+    &__email{
+    }
 }
 
 
@@ -114,4 +212,28 @@
 .navbar .navbar-nav > li > a{
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+//その他クラス
+img{//Helperに渡すavatar用クラス　すべてimg限定
+  &.avatarSize{
+    &--myPage{
+      @include mq-tablet{
+        max-width:150px;
+        height:auto;
+      }
+      @include mq-pc{
+      width:200px;
+        height:auto;
+      }
+    }
+    &--myPageShow{
+        max-width:150px;
+        height:auto;
+    }
+    &--myPageFollow{
+        max-width:30px;
+        height:30px;
+    }
+  }
 }

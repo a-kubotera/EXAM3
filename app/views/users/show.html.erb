@@ -1,4 +1,5 @@
-<div class="container">
+
+<div class="container" style="display:none;">
   <h2>フォロー詳細</h2>
   <div class="row">
     <div class="col-xs-4 show_user">
@@ -40,6 +41,116 @@
           </div>
         </div>
       <% end %>
+    </div>
+  </div>
+</div>
+
+<p>ユーザーデータとフォローデータを受け取って表示させるページ</p>
+<p>フォロー/フォロワー一覧　外部ビュー化</p>
+<p>渡す値を変えて、それぞれの一覧を出すようにする</p>
+<p>TOPIC一覧　外部ビュー化</p>
+<p>渡す値を自分のIDのみにする</p>
+<div class="row">
+  <div class="col-xs-12 col-md-8 col-md-offset-2">
+    <div class="card hoverable">
+      <div class="userDataShow">
+        <h2 class="userDataShow__title">
+          <%= @user.id == current_user.id ? "あなた" : "#{@user.name}さん" %>のプロフィール
+        </h2>
+        <div class="col-xs-12 col-md-4 userDataShow__avatar">
+          <%= profile_img(@user,"avatarSize--myPageShow") if profile_img(@user) %>
+        </div>
+        <div class="col-xs-12 col-md-8">
+          <div class="userDataShow__items">
+            <label>お名前</label>
+            <p>
+              <i class="material-icons prefix">account_circle</i>
+              <span><%= @user.name %></span>
+              <% if @user.id == current_user.id %>
+                <span class="togglebutton">
+                  <label><input type="checkbox" checked="" disabled="disabled">公表</label>
+                </span>
+              <% end %>
+            </p>
+          </div>
+          <div class="userDataShow__items">
+            <label>メールアドレス</label>
+            <p>
+              <i class="material-icons prefix">email</i>
+              <span><%= @user.email %></span>
+              <% if @user.id == current_user.id %>
+                <span class="togglebutton">
+                  <label><input type="checkbox" checked="" disabled="disabled">公表</label>
+                </span>
+              <% end %>
+            </p>
+          </div>
+          <div class="userDataShow__items">
+            <label>誕生日</label>
+            <p>
+              <i class="material-icons prefix">cake</i>
+              <span><%= @user.birthday %></span>
+              <% if @user.id == current_user.id %>
+                <span class="togglebutton">
+                  <label><input type="checkbox" checked="" disabled="disabled">公表</label>
+                </span>
+              <% end %>
+            </p>
+          </div>
+          <div class="userDataShow__items">
+            <label>年齢</label>
+            <p><i class="material-icons prefix">account_circle</i>
+              <span><%= @user.age %></span>
+              <% if @user.id == current_user.id %>
+                <span class="togglebutton">
+                  <label><input type="checkbox" checked="" disabled="disabled">公表</label>
+                </span>
+              <% end %>
+            </p>
+          </div>
+          <div class="userDataShow__items">
+            <label>住所</label>
+            <p>
+              <i class="material-icons prefix">person_pin</i>
+              <span><%= @user.address %></span>
+              <% if @user.id == current_user.id %>
+                <span class="togglebutton">
+                  <label><input type="checkbox" checked="" disabled="disabled">公表</label>
+                </span>
+              <% end %>
+            </p>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <div class="userDataShow__items">
+            <label>自己紹介</label>
+            <p>
+              <i class="material-icons prefix">person_pin</i>
+              <span><%= @user.introduction %></span>
+              <% if @user.id == current_user.id %>
+                <span class="togglebutton">
+                  <label><input type="checkbox" checked="" disabled="disabled">公表</label>
+                </span>
+              <% end %>
+            </p>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <section class="userDataShow__follow">
+            <%= render partial: 'relationships/index', locals: { user: @follow, title:"フォロー"} %>
+          </section>
+        </div>
+        <div class="col-xs-12">
+          <section class="userDataShow__follower">
+            <%= render partial: 'relationships/index', locals: { user: @followed, title:"フォロワー"} %>
+          </section>
+        </div>
+        <div class="col-xs-12 col-md-6 col-md-offset-3">
+          <section class="userDataShow__topics">
+            <%= render partial: 'topics/index',locals:{ topics: @topic} %>
+          </section>
+        </div>
+      </div>
     </div>
   </div>
 </div>

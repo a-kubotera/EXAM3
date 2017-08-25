@@ -18,22 +18,22 @@ new WOW().init();
         <div class="row userDataInput__items">
           <div class="col-md-6 input-field">
             <i class="material-icons prefix">account_circle</i>
-            <%= f.text_field :name,id:"name",class:"validate" %>
+            <%= f.text_field :name,id:"name" %>
             <label for="name">お名前</label>
           </div>
           <div class="col-md-6 input-field">
             <i class="material-icons prefix">email</i>
-            <%= f.email_field :email,id:"email",class:"validate" %>
+            <%= f.email_field :email,id:"email" %>
             <label for="email" data-success="right">E-mail</label>
           </div>
           <div class="col-md-6 input-field">
             <i class="material-icons prefix">cake</i>
-            <%= f.date_field :birthday, autofocus: true,id:"birthday",class:"validate" %>
+            <%= f.date_field :birthday, autofocus: true,id:"birthday" %>
             <label for="birthday">誕生日</label>
           </div>
           <div class="col-md-6 input-field">
             <i class="material-icons prefix">account_circle</i>
-            <%= f.number_field :age,maxlength:"2",id:"age",class:"validate" %>
+            <%= f.number_field :age,maxlength:"2",id:"age" %>
             <label for="icon_prefix">年齢</label>
           </div>
           <div class="col-md-12 input-field">
@@ -42,8 +42,8 @@ new WOW().init();
             <label for="address">住所</label>
           </div>
           <div class="col-md-12 input-field">
-            <i class="material-icons prefix">account_circle</i>
-            <%= f.text_field :introduction, autofocus: true,id:"introduction",class:"validate" %>
+            <i class="mdi-editor-mode-edit prefix"></i>
+            <%=  f.text_area :introduction, autofocus: true,id:"introduction",class:"materialize-textarea" %>
             <label for="introduction">自己紹介</label>
           </div>
           <div class="col-md-6 input-field">
