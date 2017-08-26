@@ -18,6 +18,7 @@ class TopicsController < ApplicationController
   # GET /topics/new
   def new
     @topic = Topic.new
+    @user = User.find(current_user.id)
   end
 
   # GET /topics/1/edit
@@ -72,6 +73,6 @@ class TopicsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def topic_params
-      params.require(:topic).permit(:name, :contents, :picture)
+      params.require(:topic).permit(:name, :contents, :picture, :picture_cache )
     end
 end

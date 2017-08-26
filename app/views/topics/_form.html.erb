@@ -1,32 +1,95 @@
-<%= form_with(model: topic, local: true) do |form| %>
-  <% if topic.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
+<script>
+$(function(){
+  new WOW().init();
+  $('form').on('change', 'input[type="file"]', function(e) {
+    $('#thumbnail').remove();
+    var file = e.target.files[0],
+        reader = new FileReader(),
+        $preview = $(".preview");
+        t = this;
 
-      <ul>
-      <% topic.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+    if(file.type.indexOf("image") < 0){
+      return false;
+    }
+    reader.onload = (function(file) {
+      return function(e) {
+
+        $preview.empty();
+
+        $preview.append($('<img>').attr({
+                  src: e.target.result,
+                  class: "topixInput__image",
+                  title: file.name,
+                  id:"preview"
+              }));
+      };
+    })(file);
+    reader.readAsDataURL(file);
+  });
+    $("#reset").on("click", function(){
+    $("#preview").remove();
+    $("#thumbnail").remove();
+    $("#picture_image_cache").val('');
+  });
+});
+</script>
+<div class="row">
+  <div class="col-xs-12 col-md-10 col-md-offset-1">
+    <div class="topixInput">
+      <%= form_for(@topic, authenticity_token: true) do |f| %>
+        <% if topic.errors.any? %>
+          <section class="wow fadeInDownBig" data-wow-duration="1s" data-wow-iteration="1">
+            <div class="message message__error">
+            <h2>入力内容にエラーがあります。</h2>
+            以下の<%= topic.errors.count %>個のエラーを修正してください。
+            <ul>
+              <% topic.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+          </section>
+        <% end %>
+        <div class="topixInput__items col-xs-12">
+          <div class="col-xs-4 topixInput__picture">
+            <div class="preview"></div>
+            <%= f.label :picture, class: "btn btn-primary " do%>
+            <i class="glyphicon glyphicon-camera" aria-hidden="true">
+              <span>写真を選ぶ</span>
+              <%= f.file_field :picture,style: "display:none;" %>
+            </i>
+            <% end %>
+          </div>
+          <div class="col-xs-8 input-field topixInput__text">
+            <i class="mdi-editor-mode-edit prefix"></i>
+            <%= f.text_field :name,id:"name" %>
+            <label for="name">タイトル</label>
+          </div>
+          <div class="col-xs-8 input-field topixInput__text">
+            <i class="mdi-editor-mode-edit prefix"></i>
+            <%=  f.text_area :contents, autofocus: true,id:"introduction",class:"materialize-textarea" %>
+            <label for="introduction">内容</label>
+          </div>
+          <% unless @topic.picture.blank? %>
+          <div class="img">
+            <div class="thumbnail" id="thumbnail">
+              <%= image_tag @topic.picture.url %>
+            </div>
+          </div>
+          <% end %>
+          <div class="col-xs-12 topixInput__button clearfix">
+            <div class="topixInput__button--reset">
+              <% if @topic.persisted? && @topic.picture? %>
+                <%= link_to '削除', picture_path, method: :delete,class:"btn btn-raised btn-warning", data: { confirm: '本当に削除してもよろしいですか?' } %>
+              <% else %>
+                <%= f.button "リセット", type: :reset,class: "btn btn-warning",id:"reset" %>
+              <% end %>
+            </div>
+            <div class="topixInput__button--submit">
+              <%= f.submit '登録する', :class=>"btn btn-raised btn-primary" %>
+            </div>
+          </div>
       <% end %>
-      </ul>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :topic_name %>
   </div>
-
-  <div class="field">
-    <%= form.label :contents %>
-    <%= form.text_field :contents, id: :topic_contents %>
-  </div>
-
-  <div class="field">
-    <%= form.label :picture %>
-    <%= form.text_field :picture, id: :topic_picture %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

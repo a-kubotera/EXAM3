@@ -2,14 +2,40 @@
   <% comments.each do |comment| %>
     <% unless comment.id.nil? %>
       <li id="<%=comment.id%>" >
-        <p class="left"><%= comment.user.name %>さんがコメントしました。</p>
-        <p class="left"><%= comment.content %></p>
-        <% if current_user.id == comment.user.id %>
-          <p class="right">
-            <%= link_to 'edit', edit_topic_comment_path(topic, comment),class: "fa fa-pencil-square-o fa-lg" %>
-            <%= link_to 'delete', topic_comment_path(topic, comment), class: "fa fa-trash-o fa-lg", method: :delete, remote: true, data: { confirm: '本当に削除していいですか？' } %>
-          </p>
-        <% end %>
+        <div class="row commentIndex">
+          <% if comment.topic.user_id == comment.user_id %>
+            <div class="col-xs-2 commentIndex__avatar--left">
+              <%= profile_img(comment.user,"avatarSize--commentIndex") if profile_img(comment.user) %>
+              <% if current_user.id == comment.user.id %>
+                  <%#= link_to 'edit', edit_topic_comment_path(topic, comment),class: "fa fa-pencil-square-o fa-lg" %>
+                  <%= link_to '削除', topic_comment_path(topic, comment), class: "label label-danger", method: :delete, remote: true, data: { confirm: '本当に削除していいですか？' } %>
+                </p>
+              <% end %>
+            </div>
+            <div class="col-xs-10 commentIndex__myComment">
+              <div class="commentIndex__userName">
+                <%= comment.user.name %>さんのコメント
+                <%= comment.created_at.strftime("%y/%m/%d %p %l:%M") %>投稿
+              </div>
+              <div class="commentIndex__content"><%= comment.content %></div>
+            </div>
+          <% else %>
+            <div class="col-xs-10 commentIndex__yourComment">
+              <div class="commentIndex__userName">
+                <%= comment.user.name %>さんのコメント
+                <%= comment.created_at.strftime("%y/%m/%d %p %l:%M") %>投稿
+              </div>
+              <div class="commentIndex__content"><%= comment.content %></div>
+            </div>
+            <div class="col-xs-2 commentIndex__avatar--right">
+              <%= profile_img(comment.user,"avatarSize--myPageFollow") if profile_img(comment.user) %>
+              <% if current_user.id == comment.user.id %>
+                <%#= link_to 'edit', edit_topic_comment_path(topic, comment),class: "fa fa-pencil-square-o fa-lg" %>
+                <%= link_to '削除', topic_comment_path(topic, comment), class: "label label-danger", method: :delete, remote: true, data: { confirm: '本当に削除していいですか？' } %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
       </li>
     <% end %>
   <% end %>

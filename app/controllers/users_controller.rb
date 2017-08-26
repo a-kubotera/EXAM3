@@ -7,6 +7,6 @@ class UsersController < ApplicationController
     @follow = @user.followers
     @followed = @user.followed_users
     #@topics = Topic.find(@user.id)
-    @topics = Topic.all
+    @topics = @user.topics
   end
 end

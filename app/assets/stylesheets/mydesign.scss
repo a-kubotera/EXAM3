@@ -130,15 +130,6 @@
   &__title{
     padding:5px;
   }
-  &__error{
-    margin: 5px;
-    padding:8px;
-    border-radius: 10px;
-    background-color: #f2dede;
-    border-color: #ebccd1;
-    background-color: #f2dede;
-    border-color: #ebccd1;
-  }
   &__button{
     text-align: center;;
   }
@@ -205,7 +196,144 @@
     }
 }
 //TOPIC関連
-.topic__
+.topixInput{
+  &__title{
+    @include fz_vw(10);
+    padding:5px;
+  }
+  &__items{
+    padding:10px;
+  }
+  &__picture{
+    text-align: center;
+  }
+  &__text{
+    float: right;
+  }
+  &__image{
+    width: 200px;
+    height: auto;
+  }
+  &__button{
+    text-align: center;
+    &--submit,
+    &--reset{
+      display: inline-block;
+
+    }
+  }
+}
+
+//TOPIC詳細用設定
+.topicDetail{
+  &__title{
+    @include fz_vw(10);
+    padding:5px;
+  }
+  &__items{
+    padding:10px;
+  }
+  &--paddingZero{
+    padding-left:0px;
+    padding-right:0px;
+  }
+  &__userName{
+    padding-left:0px;
+    @include fz_vw(6);
+  }
+  &__createTime{
+    @include fz_vw(3);
+  }
+  &__picture{
+    text-align: center;
+    >img{
+    max-width:100px;
+    height:auto;
+    }
+  }
+  &__contents{
+    border:1px solid gainsboro;
+    border-radius: 5px;
+    padding:5px;
+    padding-bottom:10px;
+    margin:auto;
+    margin-top:10px;
+    margin-bottom:10px;
+  }
+  &__contentsT{
+    font-weight: bolder;
+    padding-bottom: 5px;
+  }
+  &__contentsD{
+  }
+}
+
+//コメント一覧
+.commentIndex{
+    padding-top:5px;
+    padding-bottom:5px;
+    vertical-align: middle;
+    &__myComment{
+    	padding-top:5px;
+      padding-bottom: 20px;
+     	color: #555;
+    	background: #e0edff;
+      border-radius: 10px;
+      &:before{
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: -30px;
+        margin-top: -15px;
+        border: 15px solid transparent;
+        border-right: 20px solid #e0edff;
+      }
+    }
+    &__yourComment{
+      padding-top:5px;
+      padding-bottom: 20px;
+     	color: #555;
+    	background: #7accb1;
+      border-radius: 10px;
+      &:before{
+        content: "";
+      	position: absolute;
+      	top: 50%;
+      	left: 100%;
+       	margin-top: -15px;
+      	border: 10px solid transparent;
+      	border-left: 20px solid #7accb1;
+      }
+    }
+    &__userName{
+      @include fz_vw(3);
+    }
+    &__content{
+      white-space:pre-wrap;
+    }
+    &__avatar--right{
+      text-align: right;
+    }
+    &__avatar--left{
+      text-align: left;
+    }
+}
+//メッセージ関連
+.message{
+    margin: 5px;
+    padding:8px;
+    border-radius: 10px;
+  &__error{
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    color: #f44336;
+  }
+  &__info{
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #3c763d;
+  }
+}
 
 //オーバーライド
 .navbar .navbar-nav > li > a{
@@ -232,7 +360,16 @@ img{//Helperに渡すavatar用クラス　すべてimg限定
     }
     &--myPageFollow{
         max-width:30px;
-        height:30px;
+        height:auto;
+    }
+    &--topicsDetail{
+        max-height:50px;
+        width:auto;
+    }
+    &--commentIndex{
+      max-width:30px;
+      height:auto;
+      margin:auto;
     }
   }
 }
