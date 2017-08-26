@@ -1,35 +1,45 @@
-TOPIC一覧
-現時点ではALLを取得しているので、これをユーザーID指定で取得するように
-（うまくいかないので一旦保留）
 <p id="notice"><%= notice %></p>
-
-<h1>Topics</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>title</th>
-      <th>Contents</th>
-      <th>Picture</th>
-      <th>name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @topics.each do |topic| %>
-      <tr>
-        <td><%= topic.name %></td>
-        <td><%= topic.contents %></td>
-        <td><%= topic.picture %></td>
-        <td><%= link_to 'Show', topic %></td>
-        <td><%= link_to 'Edit', edit_topic_path(topic) %></td>
-        <td><%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="list-group">
+      <% @topics.each do |topic| %>
+        <div class="list-group-item">
+          <div class="row-action-primary">
+            <%= profile_img(topic.user,"avatarSize--myPageShow") if profile_img(topic.user) %>
+          </div>
+          <div class="row-content">
+            <div class="least-content">
+              <ul class="topicIndex__icons">
+                <li>
+                <%= link_to topic do %>
+                  <span class=""><%= mi.pageview.md_24 %></span>
+                <% end %>
+                </li>
+                <% if current_user.id == topic.user_id %>
+                  <li>
+                  <%= link_to edit_topic_path(topic) do %>
+                    <span class=""><%= mi.mode_edit.md_24 %></span>
+                  <% end %>
+                  </li>
+                  <li>
+                  <%= link_to topic, method: :delete, data: { confirm: '本当に削除してもよろしいでしょうか？' }  do %>
+                    <span class=""><%= mi.delete.md_24 %></span>
+                  <% end %>
+                  </li>
+                <% else %>
+                  <li class=""><%= mi.mode_edit.md_24 %></li>
+                  <li><%= mi.delete.md_24 %></li>
+                <% end %>
+              </ul>
+            </div>
+            <h4 class="list-group-item-heading"><%= topic.name %></h4>
+            <p class="list-group-item-text"><%= topic.contents %></p>
+          </div>
+        </div>
+        <div class="list-group-separator"></div>
+      <% end %>
+    </div>
+  </div>
+</div>
 <%= link_to 'New Topic', new_topic_path %>
+</div>

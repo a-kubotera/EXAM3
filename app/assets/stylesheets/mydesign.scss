@@ -196,6 +196,20 @@
     }
 }
 //TOPIC関連
+.topicIndex{
+  &__icons{
+    >li{
+      display: inline-block;
+      padding: 5px;
+      width: 30px;
+      text-align: center;
+    }
+  }
+}
+
+
+
+
 .topixInput{
   &__title{
     @include fz_vw(10);

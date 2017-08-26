@@ -1,7 +1,12 @@
 <div class="row">
   <div class="col-xs-8 col-md-6 col-xs-offset-2 col-md-offset-3">
     <div class="card hoverable topicDetail topicDetail__items">
-      <p id="notice"><%= notice %></p>
+      <% if notice.present? %>
+      <section class="wow fadeInDownBig" data-wow-duration="1s" data-wow-iteration="1">
+        <div class="message message__info"><%= notice %></div>
+      </section>
+      <% end %>
+      <p id="notice"></p>
       <div class="col-xs-1 topicDetail__userAvatar topicDetail--paddingZero"><%= profile_img(@topic.user,"avatarSize--topicsDetail") %></div>
       <div class="col-xs-5">
         <div class="topicDetail__userName"><%= @topic.user.name %></div>
@@ -9,7 +14,7 @@
       </div>
       <div class="col-xs-3 topicDetail__linkBtn">
         <% if current_user.id == @topic.user_id %>
-          <%= link_to '編集', edit_topic_comment_path(@topic),class:"btn btn-warning" ,style:"display:inline-block"%>
+          <%= link_to '編集', edit_topic_path(@topic),class:"btn btn-warning" %>
         <% end %>
       </div>
       <div class="col-xs-3 topicDetail__linkBtn">
