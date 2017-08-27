@@ -1,0 +1,19 @@
+current directory: /Users/akira/workspace/EXAM3/vendor/bundle/ruby/2.3.0/gems/byebug-9.1.0/ext/byebug
+/Users/akira/.rbenv/versions/2.3.1/bin/ruby -r ./siteconf20170827-2330-2rn2xt.rb extconf.rb
+creating Makefile
+
+current directory: /Users/akira/workspace/EXAM3/vendor/bundle/ruby/2.3.0/gems/byebug-9.1.0/ext/byebug
+make "DESTDIR=" clean
+
+current directory: /Users/akira/workspace/EXAM3/vendor/bundle/ruby/2.3.0/gems/byebug-9.1.0/ext/byebug
+make "DESTDIR="
+compiling breakpoint.c
+compiling byebug.c
+compiling context.c
+compiling locker.c
+compiling threads.c
+linking shared-object byebug/byebug.bundle
+
+current directory: /Users/akira/workspace/EXAM3/vendor/bundle/ruby/2.3.0/gems/byebug-9.1.0/ext/byebug
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 byebug.bundle ./.gem.20170827-2330-pi99za/byebug
