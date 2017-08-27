@@ -12,13 +12,12 @@
 //
 //= require rails-ujs
 
-//= require_tree
+
 //= require jquery2
 //= require jquery_ujs
-
 //= require bootstrap-material-design
 //= require bootstrap-sprockets
-
+//= require_tree .
 $(document).on('ready page:load', function() {
   $.material.init();
 });
