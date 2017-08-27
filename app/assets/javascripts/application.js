@@ -18,6 +18,7 @@
 //= require bootstrap-material-design
 //= require bootstrap-sprockets
 //= require_self
+
 $(document).on('ready page:load', function() {
   $.material.init();
 });
