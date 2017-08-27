@@ -56,6 +56,11 @@ class TopicsController < ApplicationController
     end
   end
 
+  def confirm
+    @topic.update(topic_params)
+    render :new if @topic.invalid? 
+  end
+
   # DELETE /topics/1
   # DELETE /topics/1.json
   def destroy

@@ -11,23 +11,22 @@
   email = Faker::Internet.email
   name = Faker::Name.name
   address = Faker::Address
-  birth = Faker::Date.birthday(18, 65)
   introduction = Faker::Lorem.sentence
   password = "password"
   User.create!(email: email,
                name: name,
                address: address,
-               birthday: birth,
                password: password,
                password_confirmation: password,
-               introduction: introduction
+               introduction: introduction,
+               uid:n,
                )
 end
 n=1
 while n <=100
  Topic.create(
-   title:'テスト投稿',
-   content:'ああああ',
+   name:'テスト投稿',
+   contents:'ああああ',
    user_id:n
    )
    n = n + 1
