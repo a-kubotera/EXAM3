@@ -14,10 +14,9 @@
 //= require rails-ujs
 //= require_tree .
 //= require_tree ./material-design
+//= require bootstrap-sprockets
 //= require jquery2
 //= require jquery_ujs
-
-//= require bootstrap-sprockets
 //= require_self
 
 $(document).on('ready page:load', function() {
