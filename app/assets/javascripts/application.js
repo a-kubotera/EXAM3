@@ -11,10 +11,11 @@
 // about supported directives.
 //
 //= require bootstrap-material-design
+//= require bootstrap-sprockets
 //= require rails-ujs
 //= require_tree .
 //= require_tree ./material-design
-//= require bootstrap-sprockets
+
 //= require jquery2
 //= require jquery_ujs
 //= require_self
