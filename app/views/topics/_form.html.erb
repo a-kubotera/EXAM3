@@ -1,7 +1,8 @@
 <div class="row">
   <div class="col-xs-12 col-md-10 col-md-offset-1">
     <div class="topixInput">
-      <%= form_for(@topic, authenticity_token: true) do |f| %>
+      <%# form_forからfrom_withへ書き換え %>
+      <%= form_with(@topic, authenticity_token: true) do |f| %>
         <% if topic.errors.any? %>
           <section class="wow fadeInDownBig" data-wow-duration="1s" data-wow-iteration="1">
             <div class="message message__error">

@@ -6,7 +6,6 @@ class TopicsController < ApplicationController
   # GET /topics.json
   def index
     @topics = Topic.all
-
   end
 
   # GET /topics/1
@@ -58,7 +57,7 @@ class TopicsController < ApplicationController
 
   def confirm
     @topic.update(topic_params)
-    render :new if @topic.invalid? 
+    render :new if @topic.invalid?
   end
 
   # DELETE /topics/1
