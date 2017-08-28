@@ -56,9 +56,9 @@ $(function(){
           <div class="col-md-12 userDataInput__avatar">
             <p id="defAvater"><%= profile_img(@user,"avatarSize--myPage") if profile_img(@user) %></p>
             <p class="preview"></p>
-            <div class="input-group">
-              <label class="input-group-btn">
-                <span class="btn btn-primary glyphicon glyphicon-camera setting" aria-hidden="true">
+            <div class="input-group" style="display:block">
+              <label class="input-group-btn" >
+                <span class="btn btn-primary glyphicon glyphicon-camera" aria-hidden="true">
                   <%= f.file_field :avatar, class: "fileInput",style: "display:none;"%>
                 </span>
               </label>

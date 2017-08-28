@@ -42,6 +42,13 @@
   font-size: $font_size * 1px;
   font-size: get_vw($font_size);
 }
+//TOPページ
+.topPage{
+  background: red;
+  &__layout{}
+}
+
+
 
 //共通Nav部分のdesign
 .navArea{
