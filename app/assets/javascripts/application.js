@@ -11,14 +11,13 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require_tree .
-//= require_tree ./material-design
+
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-material-design
 //= require bootstrap-sprockets
 //= require_self
-
+//= require_tree .
 $(document).on('ready page:load', function() {
   $.material.init();
 });
