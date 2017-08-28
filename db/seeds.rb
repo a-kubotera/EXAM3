@@ -13,21 +13,17 @@
   address = Faker::Address
   introduction = Faker::Lorem.sentence
   password = "password"
-  User.create!(email: email,
+  @user = User.create!(email: email,
                name: name,
                address: address,
                password: password,
                password_confirmation: password,
                introduction: introduction,
-               uid:n,
+               uid:n+20,
                )
-end
-n=1
-while n <=100
  Topic.create(
    name:'テスト投稿',
    contents:'ああああ',
-   user_id:n
+   user_id:@user.id
    )
-   n = n + 1
 end
