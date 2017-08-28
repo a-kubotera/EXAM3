@@ -10,12 +10,12 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require bootstrap-material-design
-//= require bootstrap-sprockets
-//= require rails-ujs
+
 //= require_tree .
 //= require_tree ./material-design
-
+//= require bootstrap-sprockets
+//= require bootstrap-material-design
+//= require rails-ujs
 //= require jquery2
 //= require jquery_ujs
 //= require_self
