@@ -1,15 +1,10 @@
-<div class="row topPage" style="padding:20px;">
+<div class=" topPage" style="padding:20px;">
   <% if notice.present? %>
   <section class="wow fadeInDownBig" data-wow-duration="1s" data-wow-iteration="1">
     <div class="message message__info"><%= notice %></div>
   </section>
   <% end %>
-  <div class="toppage__layout">
-    <p class="">
-      Facebookクローン作成中　(・・;)
-    </p>
-    <div class="toppage__login">
-      <%= render partial: 'login' unless signed_in?   %>
-    </div>
+  <div class="topPage__login">
+    <%= render partial: 'login' unless signed_in?   %>
   </div>
 </div>

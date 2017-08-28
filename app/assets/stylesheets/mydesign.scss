@@ -42,10 +42,24 @@
   font-size: $font_size * 1px;
   font-size: get_vw($font_size);
 }
+body{overflow-x: hidden;}
+.scrollLock{overflow-y: hidden;}
 //TOPページ
 .topPage{
-  background: red;
-  &__layout{}
+
+  &__layout{
+
+  }
+  &__title{
+    z-index: 2;
+    color:white;
+    font-size: 2em;
+  }
+  &__login{
+    position:static;
+    left:200px;
+
+  }
 }
 
 
