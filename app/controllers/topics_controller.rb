@@ -1,12 +1,11 @@
 class TopicsController < ApplicationController
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  respond_to :html
   # GET /topics
   # GET /topics.json
   def index
     @topics = Topic.all
-    respond_with @topics
+    render 'topics/index'
   end
 
   # GET /topics/1
