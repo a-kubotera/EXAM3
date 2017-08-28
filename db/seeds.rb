@@ -13,13 +13,14 @@
   address = Faker::Address
   introduction = Faker::Lorem.sentence
   password = "password"
+  uid = SecureRandom.urlsafe_base64(4)
   @user = User.create!(email: email,
                name: name,
                address: address,
                password: password,
                password_confirmation: password,
                introduction: introduction,
-               uid:n+20,
+               uid:uid,
                )
  Topic.create(
    name:'テスト投稿',
