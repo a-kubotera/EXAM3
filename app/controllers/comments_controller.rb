@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:create,:show, :edit, :update]
+  before_action :set_comment, only: [:create,:show, :update]
   # コメントを保存、投稿するためのアクションです。
   def create
     # クライアント要求に応じてフォーマットを変更
@@ -25,7 +25,6 @@ class CommentsController < ApplicationController
       end
     end
   end
-
 
   def edit
   end

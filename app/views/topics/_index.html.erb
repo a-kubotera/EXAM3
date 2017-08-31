@@ -9,6 +9,9 @@
           </div>
           <div class="row-content">
             <div class="least-content">
+              <span class="topicIndex__date">
+                <%= topic.created_at.strftime("%y/%m/%d %p %l:%M") %>投稿
+              </span>
               <ul class="topicIndex__icons">
                 <li>
                 <%= link_to topic do %>
@@ -32,8 +35,8 @@
                 <% end %>
               </ul>
             </div>
-            <h4 class="list-group-item-heading"><%= topic.name %></h4>
-            <p class="list-group-item-text"><%= topic.contents %></p>
+            <p class="list-group-item-heading"><%= topic.user.name %></p>
+            <p class="list-group-item-text"><%= topic.name %></p>
           </div>
         </div>
         <div class="list-group-separator"></div>
