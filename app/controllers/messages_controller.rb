@@ -5,6 +5,8 @@ class MessagesController < ApplicationController
 
   def index
     @messages = @conversation.messages
+    @currentUser = current_user.id
+
     if @messages.length > 10
       @over_ten = true
       @messages = @messages[-10..-1]
@@ -22,6 +24,7 @@ class MessagesController < ApplicationController
     end
 
     @message = @conversation.messages.build
+    #binding.pry
   end
 
   def create
