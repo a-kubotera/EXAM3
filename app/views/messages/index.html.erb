@@ -3,7 +3,13 @@
     <% if @over_ten %>
       <%= link_to '以前のメッセージ', '?m=all' %>
     <% end %>
-
+    <% if @message.errors.blank? %>
+      <section class="wow fadeInDownBig" data-wow-duration="1s" data-wow-iteration="1">
+        <div class="message message__error">
+          <% @message.errors.messages %>
+        </div>
+      </section>
+    <% end %>
     <% @messages.each do |message| %>
       <%if message.user_id == @currentUser %>
         <div class="row commentIndex">
