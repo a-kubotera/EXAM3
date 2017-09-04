@@ -34,7 +34,6 @@ class MessagesController < ApplicationController
     else
       redirect_to conversation_messages_path(@conversation)
     end
-    binding.pry
   end
 
   private
