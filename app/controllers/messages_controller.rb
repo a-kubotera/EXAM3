@@ -32,8 +32,9 @@ class MessagesController < ApplicationController
     if @message.save
       redirect_to conversation_messages_path(@conversation)
     else
-      redirect_to conversation_messages_path(@conversation)
+      redirect_to conversation_messages_path(@conversation), notice:"メッセージを入力してください！"
     end
+    #binding.pry
   end
 
   private

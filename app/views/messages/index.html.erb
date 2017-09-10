@@ -1,15 +1,16 @@
+<%# binding.pry %>
 <div class="panel panel-default col-md-6 col-md-offset-3 col-xs-12">
   <div class="panel-body">
     <% if @over_ten %>
       <%= link_to '以前のメッセージ', '?m=all' %>
     <% end %>
-    <%# if @message.errors.blank? %>
+    <% unless notice.blank? #エラーメッセージが受け取れない %>
       <section class="wow fadeInDownBig" data-wow-duration="1s" data-wow-iteration="1">
         <div class="message message__error">
-          <%# @message.errors.messages %>
+          <%= notice %>
         </div>
       </section>
-    <%# end %>
+    <% end %>
     <% @messages.each do |message| %>
       <%if message.user_id == @currentUser %>
         <div class="row commentIndex">
